@@ -4,13 +4,9 @@
 #include <stdlib.h>
 #include <functional>
 #include "fun.h"
+#define M_PI 3.14159265359
 
 using namespace std;
-
-
-double uniform() {
-	return (rand() / (double)RAND_MAX);
-}
 
 
 int main() {
@@ -43,9 +39,18 @@ int main() {
 
 	// SIMULATION
 	size_t n = 60;
-	fulleren sim_fulleren;
-	double beta_min = 1.0;
-	double beta_max = 100.0;
+	fulleren simulation;
+	double beta_min = 1.0, beta_max = 100.0, p = 2.0, it_max = pow(10,5);
+	double R_i = 3.5;
+
+	for (size_t i = 0; i < n; ++i) {
+		simulation.r.push_back(R_i);
+		simulation.fi.push_back(2 * M_PI * uniform());
+		simulation.th.push_back(M_PI * uniform());
+		simulation.x.push_back(simulation.r[0] * sin(simulation.th[0]) * cos(simulation.fi[0]));
+		simulation.y.push_back(simulation.r[0] * sin(simulation.th[0]) * sin(simulation.fi[0]));
+		simulation.z.push_back(simulation.r[0] * cos(simulation.th[0]));
+	}
 
 
 }

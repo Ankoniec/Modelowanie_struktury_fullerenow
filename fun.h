@@ -16,3 +16,4 @@ struct fulleren {
 double uniform();
 double f_cut(double r);
 double Brenner_potential(fulleren& c, function<double(double)> f_c);
+double calc_beta(double min, double max, double i, double i_max, double p);
