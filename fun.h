@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct cluster {
+struct fulleren {
 	vector<double> x;
 	vector<double> y;
 	vector<double> z;
@@ -15,4 +15,4 @@ struct cluster {
 
 double uniform();
 double f_cut(double r);
-double Brenner_potential(cluster& c, function<double(double)> f_c);
+double Brenner_potential(fulleren& c, function<double(double)> f_c);

@@ -10,7 +10,7 @@ double f_cut(double r) {
 	if (r > R2) return 0;
 }
 
-double Brenner_potential(cluster& c, function<double(double)> f_c) {
+double Brenner_potential(fulleren& c, function<double(double)> f_c) {
 	double R0 = 1.315; //A
 	double De = 6.325; //eV
 	double S = 1.29;
