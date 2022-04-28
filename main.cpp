@@ -33,8 +33,8 @@ int main() {
 	// BRENNER POTENTIAL TEST
 	cout << "Test funkcji potencjalu Brennera" << endl;
 	cout << "Wartosc teoretyczna: -421.6" << endl;
-	cout << "Wynik symulacji:" << test.Brenner_potential(&f_cut) << endl;
-	if (test.Brenner_potential(&f_cut) - 421.6 < 1) cout << "Wynik zgodny z teoria" << endl;
+	cout << "Wynik symulacji:" << test.total_energy() << endl;
+	if (abs(test.total_energy() + 421.6) < 1) cout << "Wynik zgodny z teoria" << endl;
 	else cout << "Wynik sprzeczny z teoria" << endl;
 
 	// SIMULATION
