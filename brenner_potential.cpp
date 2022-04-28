@@ -28,6 +28,7 @@ double Fulleren::Brenner_potential(function<double(double)> f_c) {
 	double r, cos_th_ik, cos_th_jk, g_ik, g_jk;
 
 	for (size_t i = 0; i < atoms_num; ++i) {
+
 		for (size_t j = 0; j < atoms_num; j++) {
 
 			if (i != j) {
@@ -74,6 +75,8 @@ double Fulleren::Brenner_potential(function<double(double)> f_c) {
 				B = (B_ij + B_ji) / 2;
 				V[i] += f_c(r) * (V_R - B * V_A);
 			}
+
+
 		}
 	}
 	for (double v : V) V_tot += 0.5 * v;

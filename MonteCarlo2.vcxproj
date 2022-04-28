@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="atom_shift.cpp" />
     <ClCompile Include="brenner_potential.cpp" />
     <ClCompile Include="fun.cpp" />
     <ClCompile Include="main.cpp" />
