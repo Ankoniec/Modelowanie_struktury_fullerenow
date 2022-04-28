@@ -4,16 +4,18 @@
 
 using namespace std;
 
-struct fulleren {
-	vector<double> x;
-	vector<double> y;
-	vector<double> z;
-	vector<double> r;
-	vector<double> fi;
-	vector<double> th;
+class Fulleren {
+	public:
+		vector<double> x;
+		vector<double> y;
+		vector<double> z;
+		vector<double> r;
+		vector<double> fi;
+		vector<double> th;
+
+		double Brenner_potential(function<double(double)> f_c);
 };
 
 double uniform();
 double f_cut(double r);
-double Brenner_potential(fulleren& c, function<double(double)> f_c);
 double calc_beta(double min, double max, double i, double i_max, double p);

@@ -12,7 +12,7 @@ using namespace std;
 int main() {
 
 	// READ TEST ATOMS POSITIONS
-	fulleren test;
+	Fulleren test;
 
 	ifstream indata;
 	indata.open("atoms_positions_60.dat");
@@ -33,13 +33,13 @@ int main() {
 	// BRENNER POTENTIAL TEST
 	cout << "Test funkcji potencjalu Brennera" << endl;
 	cout << "Wartosc teoretyczna: -421.6" << endl;
-	cout << "Wynik symulacji:" << Brenner_potential(test, &f_cut) << endl;
-	if (Brenner_potential(test, &f_cut) - 421.6 < 1) cout << "Wynik zgodny z teoria" << endl;
+	cout << "Wynik symulacji:" << test.Brenner_potential(&f_cut) << endl;
+	if (test.Brenner_potential(&f_cut) - 421.6 < 1) cout << "Wynik zgodny z teoria" << endl;
 	else cout << "Wynik sprzeczny z teoria" << endl;
 
 	// SIMULATION
 	size_t n = 60;
-	fulleren simulation;
+	Fulleren simulation;
 	double beta_min = 1.0, beta_max = 100.0, p = 2.0, it_max = pow(10,5);
 	double R_i = 3.5;
 

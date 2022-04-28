@@ -10,7 +10,7 @@ double f_cut(double r) {
 	if (r > R2) return 0;
 }
 
-double Brenner_potential(fulleren& c, function<double(double)> f_c) {
+double Fulleren::Brenner_potential(function<double(double)> f_c) {
 	double R0 = 1.315; //A
 	double De = 6.325; //eV
 	double S = 1.29;
@@ -20,7 +20,7 @@ double Brenner_potential(fulleren& c, function<double(double)> f_c) {
 	double c0 = 19;
 	double d0 = 2.5;
 
-	size_t atoms_num = c.x.size();
+	size_t atoms_num = x.size();
 	vector<double> V(atoms_num, 0.0);
 	double V_tot = 0.0;
 	double V_R, V_A;
@@ -33,9 +33,9 @@ double Brenner_potential(fulleren& c, function<double(double)> f_c) {
 			if (i != j) {
 
 				vector<double> r_ij{
-					c.x[j] - c.x[i],
-					c.y[j] - c.y[i],
-					c.z[j] - c.z[i]
+					x[j] - x[i],
+					y[j] - y[i],
+					z[j] - z[i]
 				};
 
 				r = sqrt(pow(r_ij[0], 2) + pow(r_ij[1], 2) + pow(r_ij[2], 2));
@@ -46,15 +46,15 @@ double Brenner_potential(fulleren& c, function<double(double)> f_c) {
 
 					if (k != i && k != j) {
 						vector<double> r_ik{
-							c.x[k] - c.x[i],
-							c.y[k] - c.y[i],
-							c.z[k] - c.z[i]
+							x[k] - x[i],
+							y[k] - y[i],
+							z[k] - z[i]
 						};
 
 						vector<double> r_jk{
-							c.x[k] - c.x[j],
-							c.y[k] - c.y[j],
-							c.z[k] - c.z[j]
+							x[k] - x[j],
+							y[k] - y[j],
+							z[k] - z[j]
 						};
 
 						R_ik = sqrt(pow(r_ik[0], 2) + pow(r_ik[1], 2) + pow(r_ik[2], 2));
