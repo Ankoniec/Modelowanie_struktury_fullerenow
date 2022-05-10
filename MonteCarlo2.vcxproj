@@ -143,6 +143,7 @@
     <ClCompile Include="brenner_potential.cpp" />
     <ClCompile Include="fun.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="change_radius.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="atoms_positions_60.dat" />

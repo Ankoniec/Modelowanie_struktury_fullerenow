@@ -37,6 +37,7 @@ double Fulleren::brenner_potential(size_t i) {
 			};
 
 			r = sqrt(pow(r_ij[0], 2) + pow(r_ij[1], 2) + pow(r_ij[2], 2));
+			if (r > 2.0) continue;
 			ksi_ij = 0;
 			ksi_ji = 0;
 
