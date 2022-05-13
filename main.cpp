@@ -46,6 +46,14 @@ int main() {
 	double w_r = pow(10, -4), w_fi = 0.05, w_th = 0.05, W_all = pow(10, -4);
 	double R_i = 3.5;
 	int it_max = pow(10, 3);
+	double energy;
+
+	ofstream myfile1;
+	ofstream myfile2;
+	ofstream myfile3;
+	myfile1.open("beta_iter.txt");
+	myfile2.open("energy_iter.txt");
+	myfile3.open("atoms_coordinates.txt");
 
 	for (size_t i = 0; i < n; ++i) {
 		simulation.r.push_back(R_i);
@@ -59,7 +67,7 @@ int main() {
 	for (int it = 0; it < it_max; ++it) {
 
 		beta = calc_beta(beta_min, beta_max, it, it_max, p);
-		
+		energy = simulation.total_energy();
 
 		for (size_t atom = 0; atom < n; ++atom) {
 			simulation.atom_shift(atom, w_r, w_fi, w_th, beta);
@@ -67,8 +75,16 @@ int main() {
 
 		simulation.change_global_radius(W_all, beta);
 
-		if (it%100==0) cout << "Iteracja: " << it << " | Beta: " << beta << "| V_total:"<< simulation.total_energy() << endl;
+		if (it % 100 == 0) {
+			cout << "Iteracja: " << it << " | Beta: " << beta;
+			cout << "| V_total:" << energy << endl;
+			myfile1 << it << " " << beta << endl;
+			myfile2 << it << " " << energy << endl;
+		}
 	}
-	
-	
+
+	for (size_t atom = 0; atom < n; ++atom) {
+		myfile3 << simulation.x[atom] << " " << simulation.y[atom] << " " << simulation.z[atom] << endl;
+	}
+
 }
