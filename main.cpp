@@ -31,11 +31,11 @@ int main() {
 	indata.close();
 
 	// BRENNER POTENTIAL TEST
-	cout << "Test funkcji potencjalu Brennera" << endl;
-	cout << "Wartosc teoretyczna: -421.6" << endl;
-	cout << "Wynik symulacji:" << test.total_energy() << endl;
-	if (abs(test.total_energy() + 421.6) < 1) cout << "Wynik zgodny z teoria" << endl;
-	else cout << "Wynik sprzeczny z teoria" << endl;
+	cout << "**** Brenner Potential function test ****" << endl;
+	cout << "Theoretical value: -421.6" << endl;
+	cout << "Simulation result:" << test.total_energy() << endl;
+	if (abs(test.total_energy() + 421.6) < 1) cout << "Test passed" << endl;
+	else cout << "Test failed" << endl;
 
 
 	// SIMULATION
@@ -45,15 +45,17 @@ int main() {
 	double beta_min = 1.0, beta_max = 100.0, p = 2.0;
 	double w_r = pow(10, -4), w_fi = 0.05, w_th = 0.05, W_all = pow(10, -4);
 	double R_i = 3.5;
-	int it_max = pow(10, 3);
+	int it_max = pow(10, 5), M = 100;
 	double energy;
 
-	ofstream myfile1;
-	ofstream myfile2;
-	ofstream myfile3;
-	myfile1.open("beta_iter.txt");
-	myfile2.open("energy_iter.txt");
-	myfile3.open("atoms_coordinates.txt");
+	ofstream beta_file;
+	ofstream energy_file;
+	ofstream xyz_file;
+	ofstream histogram_file;
+	beta_file.open("beta_iter.txt");
+	energy_file.open("energy_iter.txt");
+	xyz_file.open("atoms_coordinates.txt");
+	histogram_file.open("histogram.txt");
 
 	for (size_t i = 0; i < n; ++i) {
 		simulation.r.push_back(R_i);
@@ -76,15 +78,21 @@ int main() {
 		simulation.change_global_radius(W_all, beta);
 
 		if (it % 100 == 0) {
-			cout << "Iteracja: " << it << " | Beta: " << beta;
+			cout << "Iteration: " << it << " | Beta: " << beta;
 			cout << "| V_total:" << energy << endl;
-			myfile1 << it << " " << beta << endl;
-			myfile2 << it << " " << energy << endl;
+			beta_file << it << " " << beta << endl;
+			energy_file << it << " " << energy << endl;
 		}
 	}
 
 	for (size_t atom = 0; atom < n; ++atom) {
-		myfile3 << simulation.x[atom] << " " << simulation.y[atom] << " " << simulation.z[atom] << endl;
+		xyz_file << simulation.x[atom] << " " << simulation.y[atom] << " " << simulation.z[atom] << endl;
 	}
+
+	cout << "Total energy of the structure: " << simulation.total_energy() << endl;
+	cout << "Mean atoms' radius: " << simulation.mean_radius() << endl;
+
+	vector<double> PCF = simulation.pair_correlation_function(M);
+	for (double pcf_m : PCF) histogram_file << pcf_m << endl;
 
 }
