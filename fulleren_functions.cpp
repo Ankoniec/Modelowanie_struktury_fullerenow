@@ -4,6 +4,18 @@
 
 using namespace std;
 
+
+void Fulleren::set_initial_positions(size_t n_atoms, double R) {
+	for (size_t i = 0; i < n_atoms; ++i) {
+		r.push_back(R);
+		fi.push_back(2 * M_PI * uniform());
+		th.push_back(M_PI * uniform());
+		x.push_back(r[i] * sin(th[i]) * cos(fi[i]));
+		y.push_back(r[i] * sin(th[i]) * sin(fi[i]));
+		z.push_back(r[i] * cos(th[i]));
+	}
+}
+
 double Fulleren::f_cut(double r) {
 	double R1 = 1.7;
 	double R2 = 2.0;

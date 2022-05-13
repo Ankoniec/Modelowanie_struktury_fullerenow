@@ -39,12 +39,19 @@ int main() {
 
 
 	// SIMULATION
-	size_t n = 60;
+	size_t n_atoms = 60;
 	Fulleren simulation;
+
+	// parameters to calculate beta
 	double beta;
 	double beta_min = 1.0, beta_max = 100.0, p = 2.0;
+
+	// parameters for shifting atoms
 	double w_r = pow(10, -4), w_fi = 0.05, w_th = 0.05, W_all = pow(10, -4);
+
+	// initial atoms' radius
 	double R_i = 3.5;
+
 	int it_max = pow(10, 5), M = 100;
 	double energy;
 
@@ -57,21 +64,15 @@ int main() {
 	xyz_file.open("atoms_coordinates.txt");
 	histogram_file.open("histogram.txt");
 
-	for (size_t i = 0; i < n; ++i) {
-		simulation.r.push_back(R_i);
-		simulation.fi.push_back(2 * M_PI * uniform());
-		simulation.th.push_back(M_PI * uniform());
-		simulation.x.push_back(simulation.r[i] * sin(simulation.th[i]) * cos(simulation.fi[i]));
-		simulation.y.push_back(simulation.r[i] * sin(simulation.th[i]) * sin(simulation.fi[i]));
-		simulation.z.push_back(simulation.r[i] * cos(simulation.th[i]));
-	}
+	simulation.set_initial_positions(n_atoms, R_i);
+
 
 	for (int it = 0; it < it_max; ++it) {
 
 		beta = calc_beta(beta_min, beta_max, it, it_max, p);
 		energy = simulation.total_energy();
 
-		for (size_t atom = 0; atom < n; ++atom) {
+		for (size_t atom = 0; atom < n_atoms; ++atom) {
 			simulation.atom_shift(atom, w_r, w_fi, w_th, beta);
 		}
 
@@ -85,7 +86,7 @@ int main() {
 		}
 	}
 
-	for (size_t atom = 0; atom < n; ++atom) {
+	for (size_t atom = 0; atom < n_atoms; ++atom) {
 		xyz_file << simulation.x[atom] << " " << simulation.y[atom] << " " << simulation.z[atom] << endl;
 	}
 

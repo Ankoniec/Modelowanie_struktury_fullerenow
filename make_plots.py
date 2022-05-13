@@ -73,3 +73,13 @@ ax.set_zlabel("z")
 fig.savefig("fulleren.jpg")
 
 
+# plot histogram
+histogram = open("histogram.txt","r")
+pcf_hist = []
+
+for linia in histogram:
+    pcf_hist.append(linia.strip())
+
+fig, ax = plt.subplots(figsize=(10,10))
+plt.bar(pcf_hist, ax=ax)
+fig.savefig("pcf_histogram.jpg")
