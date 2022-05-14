@@ -66,6 +66,7 @@ int main() {
 
 	simulation.SetInitialPositions(n_atoms, R_i);
 
+	// SIMULATED ANNEALING
 	for (int it = 0; it < it_max; ++it) {
 
 		beta = calc_beta(beta_min, beta_max, it, it_max, p);
@@ -84,6 +85,7 @@ int main() {
 			energy_file << it << " " << energy << endl;
 		}
 	}
+
 
 	for (size_t atom = 0; atom < n_atoms; ++atom) {
 		xyz_file << simulation.x[atom] << " " << simulation.y[atom] << " " << simulation.z[atom] << endl;

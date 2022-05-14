@@ -31,15 +31,16 @@ double Fulleren::B(size_t i, size_t j) {
 			R_ik = sqrt(pow(r_ik[0], 2) + pow(r_ik[1], 2) + pow(r_ik[2], 2));
 			cos_th = (r_ij[0] * r_ik[0] + r_ij[1] * r_ik[1] + r_ij[2] * r_ik[2]) / (r * R_ik);
 			g_th = a0 * (1 + pow(c0, 2) / pow(d0, 2) - pow(c0, 2) / (pow(d0, 2) + pow((1 + cos_th), 2)));
-			ksi_ij += f_cut(R_ik) * g_th;
-			//if (cos_th > 0) ksi_ij = 10;
+			
+			if (cos_th > 0) { ksi_ij += 10; }
+			else {
+				ksi_ij += f_cut(R_ik) * g_th;
+			}
 		}
 	}
 
 	return pow(1 + ksi_ij, -delta);
 }
-
-
 
 
 double Fulleren::BrennerPotential(size_t i) {
