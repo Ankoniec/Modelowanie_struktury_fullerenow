@@ -59,10 +59,10 @@ int main() {
 	ofstream energy_file;
 	ofstream xyz_file;
 	ofstream histogram_file;
-	beta_file.open("beta_iter_4.txt");
-	energy_file.open("energy_iter_4.txt");
-	xyz_file.open("atoms_coordinates_4.txt");
-	histogram_file.open("histogram_4.txt");
+	beta_file.open("C:\\Users\\AnnaMaria\\source\\repos\\MonteCarlo2\\simulation_data\\beta_iter_4.txt");
+	energy_file.open("C:\\Users\\AnnaMaria\\source\\repos\\MonteCarlo2\\simulation_data\\energy_iter_4.txt");
+	xyz_file.open("C:\\Users\\AnnaMaria\\source\\repos\\MonteCarlo2\\simulation_data\\atoms_coordinates_4.txt");
+	histogram_file.open("C:\\Users\\AnnaMaria\\source\\repos\\MonteCarlo2\\simulation_data\\histogram_4.txt");
 
 	simulation.SetInitialPositions(n_atoms, R_i);
 
