@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # plot beta
-beta = open('beta_iter.txt', 'r')
+beta = open('beta_iter_4.txt', 'r')
 lines = []
 betas = []
 iters = []
@@ -21,10 +21,10 @@ fig, ax = plt.subplots(figsize=(10,10))
 ax.plot(iters, betas)
 ax.set_xlabel("Beta")
 ax.set_ylabel("Iterations")
-fig.savefig("beta.jpg")
+fig.savefig("beta_4.jpg")
 
 # plot energy
-energy = open('energy_iter.txt', 'r')
+energy = open('energy_iter_4.txt', 'r')
 lines = []
 energies = []
 iters = []
@@ -43,11 +43,11 @@ fig, ax = plt.subplots(figsize=(10,10))
 ax.plot(iters, energies)
 ax.set_xlabel("Energy [eV]")
 ax.set_ylabel("Iterations")
-fig.savefig("energy.jpg")
+fig.savefig("energy_4.jpg")
 
 
 # draw fulleren 
-xyz = open('atoms_coordinates.txt', 'r')
+xyz = open('atoms_coordinates_4.txt', 'r')
 lines = []
 X = []
 Y = []
@@ -70,16 +70,22 @@ ax.scatter(xs=X,ys=Y,zs=Z,marker="*")
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("z")
-fig.savefig("fulleren.jpg")
+fig.savefig("fulleren_4.jpg")
 
 
 # plot histogram
-histogram = open("histogram.txt","r")
+histogram = open("histogram_4.txt","r")
+M = []
 pcf_hist = []
-
+i = 1
 for linia in histogram:
-    pcf_hist.append(linia.strip())
+    pcf_hist.append((float)(linia.strip()))
+    M.append(i)
+    i += 1
 
+print(type(pcf_hist[0]))
 fig, ax = plt.subplots(figsize=(10,10))
-plt.bar(pcf_hist, ax=ax)
-fig.savefig("pcf_histogram.jpg")
+ax.bar(M, pcf_hist)
+ax.set_xlabel("M")
+ax.set_ylabel("PCF")
+fig.savefig("pcf_histogram_4.jpg")

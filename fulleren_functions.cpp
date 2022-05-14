@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void Fulleren::set_initial_positions(size_t n_atoms, double R) {
+void Fulleren::SetInitialPositions(size_t n_atoms, double R) {
 	for (size_t i = 0; i < n_atoms; ++i) {
 		r.push_back(R);
 		fi.push_back(2 * M_PI * uniform());
@@ -24,17 +24,17 @@ double Fulleren::f_cut(double r) {
 	if (r > R2) return 0;
 }
 
-double Fulleren::total_energy() {
+double Fulleren::TotalEnergy() {
 	size_t atoms_num = x.size();
 	double V_tot = 0.0;
 
 	for (size_t i = 0; i < atoms_num; ++i) {
-		V_tot += brenner_potential(i);
+		V_tot += BrennerPotential(i);
 	}
 	return V_tot / 2;
 }
 
-double Fulleren::mean_radius() {
+double Fulleren::MeanRadius() {
 	size_t atoms_num = x.size();
 	double r_sr = 0;
 

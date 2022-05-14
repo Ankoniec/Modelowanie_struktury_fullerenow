@@ -4,15 +4,15 @@
 
 using namespace std;
 
-void Fulleren::atom_shift(size_t i, double w_r, double w_fi, double w_th, double beta) {
+void Fulleren::AtomShift(size_t i, double w_r, double w_fi, double w_th, double beta) {
 	double U1 = uniform(), U2 = uniform(), U3 = uniform(), U4 = uniform();
 	double dr = r[i] * (2 * U1 - 1) * w_r;
 	double dfi = fi[i] * (2 * U2 - 1) * w_fi;
 	double dth = th[i] * (2 * U3 - 1) * w_th;
-
-	double V_old = brenner_potential(i);
-
+	double V_old, V_new, p_acc;
 	vector<double> old_coordinates{ r[i],fi[i],th[i],x[i],y[i],z[i] };
+
+	V_old = BrennerPotential(i);
 
 	r[i] += dr;
 	fi[i] += dfi;
@@ -25,8 +25,8 @@ void Fulleren::atom_shift(size_t i, double w_r, double w_fi, double w_th, double
 	y[i] = r[i] * sin(th[i]) * sin(fi[i]);
 	z[i] = r[i] * cos(th[i]);
 
-	double V_new = brenner_potential(i);
-	double p_acc = min(1.0, exp(-beta * (V_new - V_old)));
+	V_new = BrennerPotential(i);
+	p_acc = min(1.0, exp(-beta * (V_new - V_old)));
 
 	if (U4 > p_acc) {
 		r[i] = old_coordinates[0];

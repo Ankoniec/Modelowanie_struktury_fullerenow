@@ -14,13 +14,14 @@ class Fulleren {
 		vector<double> th;
 
 		double f_cut(double r);
-		double brenner_potential(size_t i);
-		double total_energy();
-		double mean_radius();
-		void set_initial_positions(size_t n_atoms, double R);
-		void atom_shift(size_t i, double w_r, double w_fi, double w_th, double beta);
-		void change_global_radius(double W_all, double beta);
-		vector<double> pair_correlation_function(int M);
+		double B(size_t i, size_t j);
+		double BrennerPotential(size_t i);
+		double TotalEnergy();
+		double MeanRadius();
+		void SetInitialPositions(size_t n_atoms, double R);
+		void AtomShift(size_t i, double w_r, double w_fi, double w_th, double beta);
+		void ChangeGlobalRadius(double W_all, double beta);
+		vector<double> PairCorrelationFunction(int M);
 };
 
 double uniform();
